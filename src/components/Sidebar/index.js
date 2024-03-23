@@ -22,8 +22,8 @@ function valuetext(value) {
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 const Sidebar = (props) => {
-    console.log('props');
-    console.log(props);
+    // console.log('props');
+    // console.log(props);
     const [value, setValue] = useState([100, 60000]);
     const [value2, setValue2] = useState(0);
     const [brandFilters, setBrandFilters] = React.useState([]);
@@ -56,8 +56,8 @@ const Sidebar = (props) => {
 
     }, []);
 
-    console.log('totalLength');
-    console.log(totalLength);
+    // console.log('totalLength');
+    // console.log(totalLength);
 
     // useEffect(() => {
     //     brands = [];

@@ -29,11 +29,16 @@ import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
 
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import SearchComponent from './SearchComponent';
 
 const Header = (props) => {
-    console.log('props');
-    console.log(props.new);
+    // console.log('props');
+    // console.log(props.new);
+    // console.log(props.category);
 
+    const cat = props.category;
+    // console.log('hsdbshbdahdbbabdshbasdjhbdsjhbjhabdjhbashjdbjahdbjhsabjhsbadjhfbasjhbfdsjhb');
+    // console.log(cat);
     const [isOpenDropDown, setisOpenDropDown] = useState(false);
     const [isOpenAccDropDown, setisOpenAccDropDown] = useState(false);
     
@@ -51,22 +56,27 @@ const Header = (props) => {
 
     }, [context.cartItems])
 
-    const [categories, setcategories] = useState([
-        'Milks and Dairies',
-        'Wines & Drinks',
-        'Clothing & beauty',
-        'Fresh Seafood',
-        'Pet Foods & Toy',
-        'Fast food',
-        'Baking material',
-        'Vegetables',
-        'Fresh Fruit',
-        'Bread and Juice',
-        'Milks and Dairies',
-        'Wines & Drinks',
-        'Clothing & beauty',
-        'Fresh Seafood'
-    ]);
+    // const [categories, setcategories] = useState([
+    //     'Milks and Dairies',
+    //     'Wines & Drinks',
+    //     'Clothing & beauty',
+    //     'Fresh Seafood',
+    //     'Pet Foods & Toy',
+    //     'Fast food',
+    //     'Baking material',
+    //     'Vegetables',
+    //     'Fresh Fruit',
+    //     'Bread and Juice',
+    //     'Milks and Dairies',
+    //     'Wines & Drinks',
+    //     'Clothing & beauty',
+    //     'Fresh Seafood'
+    // ]);
+    const [categories, setcategories] = useState();
+
+    useEffect(()=>{
+        setcategories(props.category);
+    },[props])
 
 
     const countryList = [];
@@ -133,6 +143,12 @@ const Header = (props) => {
         context.setIsopenNavigation(false)
     }
 
+    const pro = (e) => {
+        // console.log('pro');
+        console.log(e.target.value);
+        return <SearchComponent products={e.target.value} />
+    }
+
     return (
         <>
             <div className='headerWrapper' ref={headerRef}>
@@ -188,11 +204,12 @@ const Header = (props) => {
                                     {
                                         windowWidth < 992 && <div class="closeSearch" onClick={closeSearch}><ArrowBackIosIcon /></div>
                                     }
-                                    <Select data={categories} placeholder={'All Categories'} icon={false} />
+                                    
+                                    <Select data={cat} placeholder={'All Categories'} icon={false} />
 
 
                                     <div className='search'>
-                                        <input type='text' placeholder='Search for items...' ref={searchInput} />
+                                        <input type='text' placeholder='Search for items...' ref={searchInput} onChange={pro} />
                                         <SearchIcon className="searchIcon cursor" />
                                     </div>
                                 </div>
