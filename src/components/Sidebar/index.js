@@ -56,8 +56,8 @@ const Sidebar = (props) => {
 
     }, []);
 
-    console.log('totalLength');
-    console.log(totalLength);
+    // console.log('totalLength');
+    // console.log(totalLength);
 
     // useEffect(() => {
     //     brands = [];

@@ -31,8 +31,8 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 const Header = (props) => {
-    console.log('props');
-    console.log(props.new);
+    // console.log('props');
+    // console.log(props.new);
 
     const [isOpenDropDown, setisOpenDropDown] = useState(false);
     const [isOpenAccDropDown, setisOpenAccDropDown] = useState(false);
@@ -52,20 +52,20 @@ const Header = (props) => {
     }, [context.cartItems])
 
     const [categories, setcategories] = useState([
-        'Milks and Dairies',
-        'Wines & Drinks',
-        'Clothing & beauty',
-        'Fresh Seafood',
-        'Pet Foods & Toy',
-        'Fast food',
-        'Baking material',
-        'Vegetables',
-        'Fresh Fruit',
-        'Bread and Juice',
-        'Milks and Dairies',
-        'Wines & Drinks',
-        'Clothing & beauty',
-        'Fresh Seafood'
+        'smartphones',
+        'laptops',
+        'fragrances',
+        'skincare',
+        'groceries',
+        'home-decoration',
+        'furniture',
+        'tops',
+        'womens-dresses',
+        'womens-shoes',
+        'mens-shirts',
+        'womens-watches',
+        'womens-bags',
+        'womens-jewellery'
     ]);
 
 

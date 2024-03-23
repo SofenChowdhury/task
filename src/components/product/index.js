@@ -78,7 +78,7 @@ const Product = (props) => {
                     {/* </Link> */}
 
                     <div className='info'>
-                        <span className='d-block catName'>{productData?.brand}</span>
+                        <span className='d-block catName'>{productData?.category}</span>
                         <h4 className='title'><Link>{productData?.title.substr(0,50)+'...'}</Link></h4>
                         <Rating name="half-rating-read" 
                         value={parseFloat(productData?.rating)} precision={0.5} readOnly />
