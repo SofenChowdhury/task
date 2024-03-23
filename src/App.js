@@ -24,7 +24,6 @@ const MyContext = createContext();
 function App() {
 
   const [productData, setProductData] = useState([]);
-  const [categoryData, setCategoryData] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [isLoading, setIsloading] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -33,7 +32,7 @@ function App() {
 
   const [isLogin, setIsLogin] = useState();
   const [isOpenFilters, setIsopenFilters] = useState(false);
-  let category = [];
+
 // console.log("data");
 // console.log(productData);
 
@@ -57,16 +56,7 @@ function App() {
   const getData = async (url) => {
     try {
       await axios.get(url).then((response) => {
-        // console.log('jhgdkhasjsdhads');
         setProductData(response.data);
-        response.data.products.map((item, index)=>{
-          category[index] = item.category
-          // console.log(category[index]);
-        })
-        const uniqueArray = [...new Set(category)];
-        setCategoryData(uniqueArray);
-        // console.log("category.length");
-        // console.log(category.length);
         setTimeout(()=>{
           setIsloading(false);
         },2000); 
@@ -84,25 +74,8 @@ function App() {
     }
   }
 
-  // function cat (data) {
-  //   console.log('slcjasdjhajfhafhjkfhjshfjshfjhffsj');
-  //   console.log(data);
-  //   // for (let index = 0; index < data.length; index++) {
-  //   //   // category.push(data[index].category);
-  //   //   console.log("data[index]");
-  //   //   console.log(data[index]);
-  //   // }
-  //     data.products.map((item, index)=>{
-  //     // setCategoryData(...categoryData,item.category);
-  //     category[index] = item.category
-  //     console.log(category[index]);
-  //   })
-  // }
-
-  // console.log('CategoryData');
-  // console.log(categoryData);
-  // console.log("category");
-  // console.log(category);
+  // console.log('productData');
+  // console.log(productData);
   const getCartData = async (url) => {
     try {
       await axios.get(url).then((response) => {
@@ -180,7 +153,7 @@ function App() {
         }
 
         
-        <Header data={data.productData} new={productData.products} category={categoryData}/>
+        <Header data={data.productData} new={productData.products}/>
         <Routes>
           {/* <Route exact={true} path="/" element={<Home data={data.productData} />} /> */}
           <Route exact={true} path="/" element={<Listing data={data.productData} new={productData.products} single={true} />} />

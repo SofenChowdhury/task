@@ -3,7 +3,6 @@ import '../selectDrop/select.css';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import { FamilyRestroomTwoTone } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
 
 
 const Select = ({data,placeholder, icon}) => {
@@ -14,10 +13,6 @@ const Select = ({data,placeholder, icon}) => {
 
     const [listData, setListData] = useState(data);
     const [listData2, setListData2] = useState(data);
-
-    // console.log('listDatabdscjadsbjhabsdchbdhbcadshbcjbdhabdavbbnnnnnnnnnnnnnnnnn');
-    // console.log(listData);
-    // console.log(data);
 
     const openSelect = () => {
         setisOpenSelect(!isOpenSelect);
@@ -57,16 +52,11 @@ const Select = ({data,placeholder, icon}) => {
                         <ul className='searchResults'>
                         <li key={0} onClick={() => closeSelect(0, placeholder)} className={`${selectedIndex === 0 ? 'active' : ''}`}>{placeholder}</li> 
                         {
-                            // !listData == undefined &&
-                            data.map((item,index)=>{
+                            
+                            listData.map((item,index)=>{
                               
                                 return(
-                                    <div className='item' key={index} >
-                                    {/* <Link to={`/cat/${item.toLowerCase()}`}> */}
-                                    <Link to={'/'}>
-                                        <li key={index+1} onClick={() => closeSelect(index+1, item)} className={`${selectedIndex === index+1 ? 'active' : ''}`}>{item}</li> 
-                                    </Link>
-                                    </div>
+                                    <li key={index+1} onClick={() => closeSelect(index+1, item)} className={`${selectedIndex === index+1 ? 'active' : ''}`}>{item}</li> 
                                 )
                             })
                         }
