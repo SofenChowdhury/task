@@ -71,9 +71,9 @@ const Header = (props) => {
 
     const countryList = [];
 
-    useEffect(() => {
-        getCountry('https://countriesnow.space/api/v0.1/countries/');
-    }, []);
+    // useEffect(() => {
+    //     getCountry('https://countriesnow.space/api/v0.1/countries/');
+    // }, []);
 
     const getCountry = async (url) => {
         try {
