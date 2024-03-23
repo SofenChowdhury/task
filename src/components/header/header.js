@@ -31,6 +31,8 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 const Header = (props) => {
+    console.log('props');
+    console.log(props.new);
 
     const [isOpenDropDown, setisOpenDropDown] = useState(false);
     const [isOpenAccDropDown, setisOpenAccDropDown] = useState(false);
@@ -220,11 +222,12 @@ const Header = (props) => {
                                             </li> */}
                                             <li className='list-inline-item'>
                                                 <span>
-                                                    <Link to={'/cart'}> <img src={IconCart} />
+                                                    {/* <Link to={'/cart'}> <img src={IconCart} /> */}
                                                         <span className='badge bg-success rounded-circle'>
                                                             {context.cartItems.length}
                                                         </span>
-                                                        Cart</Link>
+                                                        Cart
+                                                    {/* </Link> */}
                                                 </span>
                                             </li>
 

@@ -153,7 +153,7 @@ function App() {
         }
 
         
-        <Header data={data.productData} />
+        <Header data={data.productData} new={productData.products}/>
         <Routes>
           {/* <Route exact={true} path="/" element={<Home data={data.productData} />} /> */}
           <Route exact={true} path="/" element={<Listing data={data.productData} new={productData.products} single={true} />} />
