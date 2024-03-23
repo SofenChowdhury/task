@@ -13,7 +13,7 @@ const Listing = (props) => {
     const [isOpenDropDown2, setisOpenDropDown2] = useState(false);
     const [showPerPage, setHhowPerPage] = useState(3);
 
-    const [data, setData] = useState([props?.new]);
+    const [data, setData] = useState([]);
 
     const context = useContext(MyContext);
 
@@ -23,51 +23,45 @@ const Listing = (props) => {
 
     var itemsData = [];
 
-    console.log('props');
-    console.log(props);
+    
+
 
     useEffect(() => {
 
-        console.log('item1');
-        props?.new?.length !== 0 &&
-            props?.new?.map((item, index) => {
+        props.data.length !== 0 &&
+            props.data.map((item, index) => {
 
                 //page == single cat
                 if (props.single === true) {
-                    console.log('item');
-                    console.log(item);
-
-                    itemsData.push({ ...item, parentCatName: item.category, subCatName: item.category })
-                    
 
                     // if (item.cat_name.toLowerCase() == id?.toLowerCase()) {
 
-                        // item.items.length !== 0 &&
-                        //     item.items.map((item_) => {
-                        //         item_.products.map((item__, index__) => {
-                        //             itemsData.push({ ...item__, parentCatName: item.cat_name, subCatName: item_.cat_name })
-                        //         })
+                        item.items.length !== 0 &&
+                            item.items.map((item_) => {
+                                item_.products.map((item__, index__) => {
+                                    itemsData.push({ ...item__, parentCatName: item.cat_name, subCatName: item_.cat_name })
+                                })
 
-                        //     })
+                            })
 
 
                     // }
                 }
                 //page == double cat
-                // else {
-                //     item.items.length !== 0 &&
-                //         item.items.map((item_, index_) => {
-                //             // console.log(item_.cat_name.replace(/[^A-Za-z]/g,"-").toLowerCase())
-                //             // if (item_.cat_name.split(' ').join('-').toLowerCase() == id?.split(' ').join('-').toLowerCase()) {
-                //                 item_.products.map((item__, index__) => {
+                else {
+                    item.items.length !== 0 &&
+                        item.items.map((item_, index_) => {
+                            // console.log(item_.cat_name.replace(/[^A-Za-z]/g,"-").toLowerCase())
+                            // if (item_.cat_name.split(' ').join('-').toLowerCase() == id?.split(' ').join('-').toLowerCase()) {
+                                item_.products.map((item__, index__) => {
 
-                //                     itemsData.push({ ...item__, parentCatName: item.cat_name, subCatName: item_.cat_name })
+                                    itemsData.push({ ...item__, parentCatName: item.cat_name, subCatName: item_.cat_name })
 
-                //                 })
+                                })
 
-                //             // }
-                //         })
-                // }
+                            // }
+                        })
+                }
 
             })
 
@@ -76,247 +70,182 @@ const Listing = (props) => {
 
         const list2 = itemsData.filter((item, index) => itemsData.indexOf(item) === index);
 
-        console.log('itemsData');
-        console.log(itemsData);
-        // console.log("list2");
-        // console.log(list2);
-        // console.log('data');
-        // console.log(data);
-        
         setData(list2);
-        // console.log("data1");
-        // console.log(data);
 
         window.scrollTo(0,0);
 
-    }, [])
+    }, [id])
 
-    // useEffect(() => {
 
-    //     props.data.length !== 0 &&
-    //         props.data.map((item, index) => {
 
-    //             //page == single cat
-    //             if (props.single === true) {
 
-    //                 // if (item.cat_name.toLowerCase() == id?.toLowerCase()) {
 
-    //                     item.items.length !== 0 &&
-    //                         item.items.map((item_) => {
-    //                             item_.products.map((item__, index__) => {
-    //                                 itemsData.push({ ...item__, parentCatName: item.cat_name, subCatName: item_.cat_name })
-    //                             })
 
-    //                         })
+    const filterByBrand = (keyword) => {
 
+        props.data.length !== 0 &&
+            props.data.map((item, index) => {
 
-    //                 // }
-    //             }
-    //             //page == double cat
-    //             else {
-    //                 item.items.length !== 0 &&
-    //                     item.items.map((item_, index_) => {
-    //                         // console.log(item_.cat_name.replace(/[^A-Za-z]/g,"-").toLowerCase())
-    //                         // if (item_.cat_name.split(' ').join('-').toLowerCase() == id?.split(' ').join('-').toLowerCase()) {
-    //                             item_.products.map((item__, index__) => {
+                //page == single cat
+                if (props.single === true) {
 
-    //                                 itemsData.push({ ...item__, parentCatName: item.cat_name, subCatName: item_.cat_name })
+                    item.items.length !== 0 &&
+                        item.items.map((item_) => {
+                            item_.products.map((item__, index__) => {
+                                if (item__.brand.toLowerCase() === keyword.toLowerCase()) {
+                                    //console.log(item__)
+                                    itemsData.push({ ...item__, parentCatName: item.cat_name, subCatName: item_.cat_name })
+                                }
 
-    //                             })
 
-    //                         // }
-    //                     })
-    //             }
+                            })
 
-    //         })
+                        })
 
 
+                }
+                //page == double cat
+                else {
+                    item.items.length !== 0 &&
+                        item.items.map((item_, index_) => {
+                            // console.log(item_.cat_name.replace(/[^A-Za-z]/g,"-").toLowerCase())
+                            // if (item_.cat_name.split(' ').join('-').toLowerCase() == id?.split(' ').join('-').toLowerCase()) {
+                                item_.products.map((item__, index__) => {
+                                    if (item__.brand.toLowerCase() === keyword.toLowerCase()) {
+                                        itemsData.push({ ...item__, parentCatName: item.cat_name, subCatName: item_.cat_name })
+                                    }
 
+                                })
 
-    //     const list2 = itemsData.filter((item, index) => itemsData.indexOf(item) === index);
+                            // }
+                        })
+                }
 
-    //     console.log("list2");
-    //     console.log(list2);
-    //     console.log(itemsData);
-    //     console.log(data);
-        
-    //     setData(list2);
-    //     console.log(data);
+            })
 
-    //     window.scrollTo(0,0);
 
-    // }, [id])
 
+        const list2 = itemsData.filter((item, index) => itemsData.indexOf(item) === index);
+        //console.log(itemsData)
 
 
+        setData(list2);
 
+        window.scrollTo(0, 0)
 
+    }
 
-    // const filterByBrand = (keyword) => {
 
-    //     props.data.length !== 0 &&
-    //         props.data.map((item, index) => {
 
-    //             //page == single cat
-    //             if (props.single === true) {
 
-    //                 item.items.length !== 0 &&
-    //                     item.items.map((item_) => {
-    //                         item_.products.map((item__, index__) => {
-    //                             if (item__.brand.toLowerCase() === keyword.toLowerCase()) {
-    //                                 //console.log(item__)
-    //                                 itemsData.push({ ...item__, parentCatName: item.cat_name, subCatName: item_.cat_name })
-    //                             }
+    const filterByPrice = (minValue, maxValue) => {
 
+        props.data.length !== 0 &&
+            props.data.map((item, index) => {
 
-    //                         })
+                //page == single cat
+                if (props.single === true) {
+                    // if (id === item.cat_name.toLowerCase()) {
+                        item.items.length !== 0 &&
+                            item.items.map((item_) => {
+                                item_.products.length !== 0 &&
+                                    item_.products.map((product, prodIndex) => {
+                                        let price = parseInt(product.price.toString().replace(/,/g, ""))
+                                        if (minValue <= price && maxValue >= price) {
+                                            itemsData.push({ ...product, parentCatName: item.cat_name, subCatName: item_.cat_name })
+                                        }
 
-    //                     })
+                                    })
+                            })
+                    // }
+                }
 
+                else {
+                    item.items.length !== 0 &&
+                        item.items.map((item_, index_) => {
+                            // if (item_.cat_name.split(' ').join('-').toLowerCase() == id?.split(' ').join('-').toLowerCase()) {
+                                item_.products.map((product) => {
+                                    let price = parseInt(product.price.toString().replace(/,/g, ""))
+                                    if (minValue <= price && maxValue >= price) {
+                                        itemsData.push({ ...product, parentCatName: item.cat_name, subCatName: item_.cat_name })
+                                    }
+                                })
 
-    //             }
-    //             //page == double cat
-    //             else {
-    //                 item.items.length !== 0 &&
-    //                     item.items.map((item_, index_) => {
-    //                         // console.log(item_.cat_name.replace(/[^A-Za-z]/g,"-").toLowerCase())
-    //                         // if (item_.cat_name.split(' ').join('-').toLowerCase() == id?.split(' ').join('-').toLowerCase()) {
-    //                             item_.products.map((item__, index__) => {
-    //                                 if (item__.brand.toLowerCase() === keyword.toLowerCase()) {
-    //                                     itemsData.push({ ...item__, parentCatName: item.cat_name, subCatName: item_.cat_name })
-    //                                 }
+                            // }
+                        })
+                }
 
-    //                             })
+            })
 
-    //                         // }
-    //                     })
-    //             }
+        const list2 = itemsData.filter((item, index) => itemsData.indexOf(item) === index);
+        setData(list2);
+    }
 
-    //         })
 
 
 
-    //     const list2 = itemsData.filter((item, index) => itemsData.indexOf(item) === index);
-    //     //console.log(itemsData)
 
+    const filterByRating = (keyword) => {
 
-    //     setData(list2);
+        props.data.length !== 0 &&
+            props.data.map((item, index) => {
 
-    //     window.scrollTo(0, 0)
+                //page == single cat
+                if (props.single === true) {
 
-    // }
+                    // if (item.cat_name.toLowerCase() == id?.toLowerCase()) {
 
+                        item.items.length !== 0 &&
+                            item.items.map((item_) => {
+                                item_.products.map((item__, index__) => {
+                                    itemsData.push({ ...item__, parentCatName: item.cat_name, subCatName: item_.cat_name })
+                                })
 
+                            })
 
 
-    // const filterByPrice = (minValue, maxValue) => {
+                    // }
+                }
+                //page == double cat
+                else {
+                    item.items.length !== 0 &&
+                        item.items.map((item_, index_) => {
+                            // console.log(item_.cat_name.replace(/[^A-Za-z]/g,"-").toLowerCase())
+                            // if (item_.cat_name.split(' ').join('-').toLowerCase() == id?.split(' ').join('-').toLowerCase()) {
+                                item_.products.map((item__, index__) => {
 
-    //     props.data.length !== 0 &&
-    //         props.data.map((item, index) => {
+                                    itemsData.push({ ...item__, parentCatName: item.cat_name, subCatName: item_.cat_name })
 
-    //             //page == single cat
-    //             if (props.single === true) {
-    //                 // if (id === item.cat_name.toLowerCase()) {
-    //                     item.items.length !== 0 &&
-    //                         item.items.map((item_) => {
-    //                             item_.products.length !== 0 &&
-    //                                 item_.products.map((product, prodIndex) => {
-    //                                     let price = parseInt(product.price.toString().replace(/,/g, ""))
-    //                                     if (minValue <= price && maxValue >= price) {
-    //                                         itemsData.push({ ...product, parentCatName: item.cat_name, subCatName: item_.cat_name })
-    //                                     }
+                                })
 
-    //                                 })
-    //                         })
-    //                 // }
-    //             }
+                            // }
+                        })
+                }
 
-    //             else {
-    //                 item.items.length !== 0 &&
-    //                     item.items.map((item_, index_) => {
-    //                         // if (item_.cat_name.split(' ').join('-').toLowerCase() == id?.split(' ').join('-').toLowerCase()) {
-    //                             item_.products.map((product) => {
-    //                                 let price = parseInt(product.price.toString().replace(/,/g, ""))
-    //                                 if (minValue <= price && maxValue >= price) {
-    //                                     itemsData.push({ ...product, parentCatName: item.cat_name, subCatName: item_.cat_name })
-    //                                 }
-    //                             })
+            })
 
-    //                         // }
-    //                     })
-    //             }
 
-    //         })
 
-    //     const list2 = itemsData.filter((item, index) => itemsData.indexOf(item) === index);
-    //     setData(list2);
-    // }
 
+        const list2 = itemsData.filter((item, index) => itemsData.indexOf(item) === index);
 
+        setData(list2);
 
+        data?.map((item)=>{
+            if(item.rating===keyword){
+                itemsData.push({ ...item, parentCatName: item.cat_name, subCatName: item.cat_name })
+            }
+        })
 
 
-    // const filterByRating = (keyword) => {
-
-    //     props.data.length !== 0 &&
-    //         props.data.map((item, index) => {
-
-    //             //page == single cat
-    //             if (props.single === true) {
-
-    //                 // if (item.cat_name.toLowerCase() == id?.toLowerCase()) {
-
-    //                     item.items.length !== 0 &&
-    //                         item.items.map((item_) => {
-    //                             item_.products.map((item__, index__) => {
-    //                                 itemsData.push({ ...item__, parentCatName: item.cat_name, subCatName: item_.cat_name })
-    //                             })
-
-    //                         })
-
-
-    //                 // }
-    //             }
-    //             //page == double cat
-    //             else {
-    //                 item.items.length !== 0 &&
-    //                     item.items.map((item_, index_) => {
-    //                         // console.log(item_.cat_name.replace(/[^A-Za-z]/g,"-").toLowerCase())
-    //                         // if (item_.cat_name.split(' ').join('-').toLowerCase() == id?.split(' ').join('-').toLowerCase()) {
-    //                             item_.products.map((item__, index__) => {
-
-    //                                 itemsData.push({ ...item__, parentCatName: item.cat_name, subCatName: item_.cat_name })
-
-    //                             })
-
-    //                         // }
-    //                     })
-    //             }
-
-    //         })
-
-
-
-
-    //     const list2 = itemsData.filter((item, index) => itemsData.indexOf(item) === index);
-
-    //     setData(list2);
-
-    //     data?.map((item)=>{
-    //         if(item.rating===keyword){
-    //             itemsData.push({ ...item, parentCatName: item.cat_name, subCatName: item.cat_name })
-    //         }
-    //     })
-
-
-    //     const list3 = itemsData.filter((item, index) => itemsData.indexOf(item) === index);
+        const list3 = itemsData.filter((item, index) => itemsData.indexOf(item) === index);
       
-    //     setData(list2);
+        setData(list2);
 
 
-    //     window.scrollTo(0, 0)
+        window.scrollTo(0, 0)
 
-    // }
+    }
 
 
 
@@ -362,20 +291,20 @@ const Listing = (props) => {
 
                     <div className='listingData'>
                         <div className='row'>
-                            {/* <div className={`col-md-3 sidebarWrapper ${context.isOpenFilters===true && 'click'}`}>
+                            <div className={`col-md-3 sidebarWrapper ${context.isOpenFilters===true && 'click'}`}>
 
                                 {
                                     data.length !== 0 && <Sidebar data={props.data} currentCatData={data} filterByBrand={filterByBrand} filterByPrice={filterByPrice} filterByRating={filterByRating} />
                                 }
 
-                            </div> */}
+                            </div>
 
 
                             <div className='col-md-9 rightContent homeProducts pt-0'>
 
 
                                 <div className='topStrip d-flex align-items-center'>
-                                    <p className='mb-0'>We found <span className='text-success'>{props?.new?.length}</span> items for you!</p>
+                                    <p className='mb-0'>We found <span className='text-success'>{data.length}</span> items for you!</p>
                                     {/* <div className='ml-auto d-flex align-items-center'>
                                         <div className='tab_ position-relative'>
                                             <Button className='btn_' onClick={() => setisOpenDropDown(!isOpenDropDown)}><GridViewOutlinedIcon /> Show: {showPerPage * 5}</Button>
@@ -446,12 +375,11 @@ const Listing = (props) => {
                                 <div className='productRow pl-4 pr-3'>
 
                                     {
-                                        data?.length !== 0 &&
-                                        data?.map((item, index) => {
+                                        data.length !== 0 &&
+                                        data.map((item, index) => {
                                             return (
                                                 <div className='item' key={index}>
-                                                    22
-                                                    {/* <Product tag={item.type} item={item} /> */}
+                                                    <Product tag={item.type} item={item} />
                                                 </div>
                                             )
                                         })

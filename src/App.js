@@ -33,8 +33,8 @@ function App() {
   const [isLogin, setIsLogin] = useState();
   const [isOpenFilters, setIsopenFilters] = useState(false);
 
-console.log("data");
-console.log(productData);
+// console.log("data");
+// console.log(productData);
 
   useEffect(() => {
     getData('https://dummyjson.com/products?skip=0&limit=100');
@@ -156,7 +156,7 @@ console.log(productData);
         <Header data={data.productData} />
         <Routes>
           {/* <Route exact={true} path="/" element={<Home data={data.productData} />} /> */}
-          <Route exact={true} path="/" element={<Listing data={data.productData} new={productData?.products} single={true} />} />
+          <Route exact={true} path="/" element={<Listing data={data.productData} new={productData.products} single={true} />} />
           <Route exact={true} path="/cat/:id" element={<Listing data={data.productData} single={true} />} />
           <Route exact={true} path="/cat/:id/:id" element={<Listing data={data.productData} single={false} />} />
           <Route exact={true} path="/product/:id" element={<DetailsPage data={data.productData} />} />
