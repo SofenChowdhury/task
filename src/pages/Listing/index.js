@@ -409,6 +409,7 @@ const Listing = (props) => {
                                         data?.map((item, index) => {
                                             return (
                                                 <div className='item' key={index}>
+                                                    {item?.title}
                                                     <Product tag={item?.stock} item={item} />
                                                 </div>
                                             )
