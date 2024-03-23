@@ -151,11 +151,12 @@ const Header = (props) => {
 
                                             <li className='list-inline-item'>
                                                 <span>
-                                                    <Link to={'/cart'}> <img src={IconCart} />
+                                                    {/* <Link to={'/cart'}>  */}
+                                                        <img src={IconCart} />
                                                         <span className='badge bg-success rounded-circle'>
                                                             {context.cartItems.length}
                                                         </span>
-                                                    </Link>
+                                                    {/* </Link> */}
                                                 </span>
                                             </li>
 
