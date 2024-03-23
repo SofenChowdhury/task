@@ -22,6 +22,8 @@ function valuetext(value) {
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 const Sidebar = (props) => {
+    console.log('props');
+    console.log(props);
     const [value, setValue] = useState([100, 60000]);
     const [value2, setValue2] = useState(0);
     const [brandFilters, setBrandFilters] = React.useState([]);
@@ -40,76 +42,72 @@ const Sidebar = (props) => {
     var catLength = 0;
     var lengthArr = [];
     useEffect(() => {
-        props.data.length !== 0 &&
-        props.data.map((item, index) => {
-                item.items.length !== 0 &&
-                    item.items.map((item_) => {
-                        catLength += item_.products.length
-                    })
-                lengthArr.push(catLength)
-                catLength = 0;
-            })
+        catLength += props?.data?.length
+        // props?.data?.length !== 0 &&
+        // props?.data?.map((item, index) => {
+        // })
+        lengthArr.push(catLength)
+        catLength = 0;
 
         const list = lengthArr.filter((item, index) => lengthArr.indexOf(item) === index);
         setTotalLength(list)
+        
 
 
     }, []);
 
+    console.log('totalLength');
+    console.log(totalLength);
 
+    // useEffect(() => {
+    //     brands = [];
+    //     ratings=[];
+    //     props.currentCatData.length !== 0 &&
+    //         props.currentCatData.map((item) => {
+    //             brands.push(item.brand);
+    //             ratings.push(parseFloat(item.rating))
+    //         })
 
-    useEffect(() => {
-        brands = [];
-        ratings=[];
-        props.currentCatData.length !== 0 &&
-            props.currentCatData.map((item) => {
-                brands.push(item.brand);
-                ratings.push(parseFloat(item.rating))
-            })
+    //     const brandList = brands.filter((item, index) => brands.indexOf(item) === index);
+    //     setBrandFilters(brandList);
 
-        const brandList = brands.filter((item, index) => brands.indexOf(item) === index);
-        setBrandFilters(brandList);
+    //     const ratings_ = ratings.filter((item, index) => ratings.indexOf(item) === index);
+    //     setRatings(ratings_)
 
-        const ratings_ = ratings.filter((item, index) => ratings.indexOf(item) === index);
-        setRatings(ratings_)
-
-    }, [id])
-
-
-
-
-    useEffect(() => {
-        var price = 0;
-        props.currentCatData.length !== 0 &&
-            props.currentCatData.map((item, index) => {
-                let prodPrice = parseInt(item.price.toString().replace(/,/g, ""));
-                if (prodPrice > price) {
-                    price = prodPrice
-                }
-            })
-
-
-        setValue2(price)
-
-        //setValue(price);
-        //filterByPrice(price[0], price[1]);
+    // }, [id])
 
 
 
-    }, [props.currentCatData]);
+
+    // useEffect(() => {
+    //     var price = 0;
+    //     props.currentCatData.length !== 0 &&
+    //         props.currentCatData.map((item, index) => {
+    //             let prodPrice = parseInt(item.price.toString().replace(/,/g, ""));
+    //             if (prodPrice > price) {
+    //                 price = prodPrice
+    //             }
+    //         })
 
 
-    const filterByBrand = (keyword) => {
-        props.filterByBrand(keyword)
-    }
+    //     setValue2(price)
 
-    const filterByRating = (keyword) => {
-        props.filterByRating(parseFloat(keyword))
-    }
 
-    useEffect(() => {
-        filterByPrice(value[0], value[1]);
-    }, [value]);
+
+    // }, [props.currentCatData]);
+
+
+    // const filterByBrand = (keyword) => {
+    //     props.filterByBrand(keyword)
+    // }
+
+    // const filterByRating = (keyword) => {
+    //     props.filterByRating(parseFloat(keyword))
+    // }
+
+    // useEffect(() => {
+    //     filterByPrice(value[0], value[1]);
+    // }, [value]);
 
     const filterByPrice = (minValue, maxValue) => {
         props.filterByPrice(minValue, maxValue)
@@ -119,29 +117,7 @@ const Sidebar = (props) => {
     return (
         <>
             <div className={`sidebar ${context.isOpenFilters===true && 'open'}`}>
-                {/* <div className='card border-0 shadow res-hide'>
-                    <h3>Category</h3>
-                    <div className='catList'>
-                        {
-                            props.data.length !== 0 && props.data.map((item, index) => {
-                                return (
-                                    <Link to={`/cat/${item.cat_name.toLowerCase()}`}>
-                                        <div className='catItem d-flex align-items-center'>
-                                            <span className='img'><img src='https://wp.alithemes.com/html/nest/demo/assets/imgs/theme/icons/category-1.svg' width={30} /></span>
-                                            <h4 className='mb-0 ml-3 mr-3 text-capitalize'>{item.cat_name}</h4>
-                                            <span className='d-flex align-items-center justify-content-center rounded-circle ml-auto'>
-                                            {totalLength[index]}</span>
-                                        </div>
-                                    </Link>
-                                )
-                            })
-
-                        }
-
-                    </div>
-                </div> */}
-
-
+                
                 <div className='card border-0 shadow'>
                     <h3>Fill by price</h3>
 
@@ -154,7 +130,7 @@ const Sidebar = (props) => {
                     </div>
 
                  
-                    <div className='filters pt-5'>
+                    {/* <div className='filters pt-5'>
                         <h5>Filter By Brand</h5>
 
                         <ul className='mb-0'>
@@ -197,7 +173,7 @@ const Sidebar = (props) => {
                                 }
                             </RadioGroup>
                         </ul>
-                    </div>
+                    </div> */}
 
 
                     <div className='d-flex filterWrapper'>
@@ -208,7 +184,6 @@ const Sidebar = (props) => {
 
 
 
-                {/* <img src={bannerImg} className='w-100' /> */}
 
             </div>
         </>

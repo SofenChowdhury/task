@@ -14,6 +14,9 @@ import { MyContext } from '../../App';
 
 const Product = (props) => {
 
+    // console.log("product");
+    // console.log(props);
+
     const [productData, setProductData] = useState();
     const [isAdded, setIsadded] = useState(false);
     
@@ -45,13 +48,13 @@ const Product = (props) => {
             {
                 productData !== undefined &&
                 <>
-                    <Link to={`/product/${productData.id}`}>
-                        <div className='imgWrapper'>
+                    {/* <Link to={`/product/${productData.id}`}> */}
+                        <div className='imgWrapper cursor'>
                             <div className='p-4 wrapper mb-3'>
-                                <img src={productData.catImg+'?im=Resize=(420,420)'} className='w-100' />
+                                <img src={productData.thumbnail+'?im=Resize=(420,420)'} className='w-100' />
                             </div>
 
-                            <div className='overlay transition'>
+                            {/* <div className='overlay transition'>
                                 <ul className='list list-inline mb-0'>
                                     <li className='list-inline-item'>
                                         <a className='cursor' tooltip="Add to Wishlist">
@@ -69,22 +72,22 @@ const Product = (props) => {
                                         </a>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> */}
                         </div>
 
-                    </Link>
+                    {/* </Link> */}
 
                     <div className='info'>
-                        <span className='d-block catName'>{productData.brand}</span>
-                        <h4 className='title'><Link>{productData.productName.substr(0,50)+'...'}</Link></h4>
+                        <span className='d-block catName'>{productData?.brand}</span>
+                        <h4 className='title'><Link>{productData?.title.substr(0,50)+'...'}</Link></h4>
                         <Rating name="half-rating-read" 
-                        value={parseFloat(productData.rating)} precision={0.5} readOnly />
-                        <span className='brand d-block text-g'>By <Link className='text-g'>{productData.brand}</Link></span>
+                        value={parseFloat(productData?.rating)} precision={0.5} readOnly />
+                        <span className='brand d-block text-g'>By <Link className='text-g'>{productData?.brand}</Link></span>
 
                         <div className='d-flex align-items-center mt-3'>
                             <div className='d-flex align-items-center w-100'>
                                 <span className='price text-g font-weight-bold'>
-                                    Rs {productData.price}</span> <span className='oldPrice ml-auto'>Rs {productData.oldPrice}</span>
+                                    Rs {productData?.price}</span> <span className='oldPrice ml-auto'>Rs {productData?.oldPrice}</span>
                             </div>
                         </div>
 
